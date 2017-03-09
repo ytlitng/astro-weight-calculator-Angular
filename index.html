@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- always include ng-app in html tag  -->
+<html lang="en-US" ng-app="planets">
+
+<head>
+    <title>Astroid Caluclator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<!-- always include ng-controller in body tag -->
+<body ng-controller="HomeController as homeCtrl">
+    <h1>Astro Weight Calculator</h1>
+
+    <div>
+        <!-- use ng-model to store user input in a variable in homeCtrl called weight  -->
+        <p>Enter your weight : <input type="text" ng-model="homeCtrl.weight"></p>
+
+        <!-- use ng-options to populate the dropdown -->
+        <!-- [thing_to_store_in_variable] as [thing_to_show_user] for [single] in [array_in_controller] (ng-options=) ng options ony valid on select options -->
+        <!-- use ng-model to store whatever the user selects in a variable in homeCtrl called selectedPlanet  -->
+        <select ng-model="homeCtrl.selectedPlanet" ng-options="planet as planet[0] for planet in homeCtrl.planets"></select>
+
+        <!-- use ng-if to show an element in the DOM if a condition is true -->
+        <!-- if homeCtrl.selectedPlanet is empty or homeCtrl.weight is empty, hide -->
+        <p ng-if="homeCtrl.selectedPlanet && homeCtrl.weight">
+            <!-- Refer to variables stored in homeCtrl to write some output -->
+            If you were on {{homeCtrl.selectedPlanet[0]}}, you would weigh {{homeCtrl.selectedPlanet[1] * homeCtrl.weight}} lbs.
+        </p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
